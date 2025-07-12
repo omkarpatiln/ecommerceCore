@@ -58,6 +58,33 @@ const AddToCart: React.FC<Props> = ({ navigation }) => {
         </View>
       ) : (
         <View style={{ flex: 1, margin: Sizes.Padding }}>
+          <View
+            style={{
+              marginBottom: 10,
+              padding: 10,
+              backgroundColor: '#f1f1f1',
+              borderRadius: 8,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: '600',
+                color: Colors.Primary,
+                textAlign: 'center',
+              }}
+            >
+              Total Price: ₹ {totalPrice.toFixed(2)}
+            </Text>
+            <View style={{ width: '60%', alignSelf: 'center' }}>
+              <TextButton
+                onPress={() => {}}
+                style={{ margin: Sizes.Padding }}
+                loading={false}
+                label="Proceed to Pay"
+              />
+            </View>
+          </View>
           <FlatList
             data={items}
             renderItem={({ item }) => (
@@ -75,34 +102,6 @@ const AddToCart: React.FC<Props> = ({ navigation }) => {
               <View>
                 <Text style={{ textAlign: 'center' }}>{`No Data Found`}</Text>
               </View>
-            }
-            ListHeaderComponent={() =>
-              items.length > 0 ? (
-                <View
-                  style={{
-                    marginBottom: 10,
-                    padding: 10,
-                    backgroundColor: '#f1f1f1',
-                    borderRadius: 8,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: '600',
-                      color: Colors.Primary,
-                    }}
-                  >
-                    Total Price: ₹ {totalPrice.toFixed(2)}
-                  </Text>
-                  <TextButton
-                    onPress={() => {}}
-                    style={{ margin: Sizes.Padding }}
-                    loading={false}
-                    label="Proceed to Pay"
-                  />
-                </View>
-              ) : null
             }
             showsVerticalScrollIndicator={false}
             initialNumToRender={6}

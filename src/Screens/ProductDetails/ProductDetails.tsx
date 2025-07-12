@@ -6,7 +6,11 @@ import ProductComponent from './Components/ProductComponent';
 import TextButton from '../../auth/Components/TextButton';
 import { Colors, Sizes } from '../../Modules/ThemHelper';
 import { useDispatch, useSelector } from 'react-redux';
-import { isProductInCart, selectTotalCartQuantity } from '../../functions';
+import {
+  isProductInCart,
+  selectProductQuantityById,
+  selectTotalCartQuantity,
+} from '../../functions';
 import {
   addToCart,
   decreaseQuantity,
@@ -18,7 +22,8 @@ const ProductDetails: React.FC<Props> = ({ navigation, route }) => {
   const { Item } = route.params;
 
   const dispatch = useDispatch();
-  const totalQty = useSelector(selectTotalCartQuantity);
+  const totalQty = useSelector(selectProductQuantityById(Item.id));
+
   const handleAdd = () => {
     dispatch(addToCart(Item));
   };
