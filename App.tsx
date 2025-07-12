@@ -1,28 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { View, Text } from 'react-native';
+import React from 'react';
+import Routes from './src/Routes';
+import AuthRoutes from './src/auth/AuthRoutes';
+import { useSelector } from 'react-redux';
+import { RootState } from './src/Redux';
+import SplashScreen from './src/Screens/Home/SplashScreen';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+const App = () => {
+  const { user, ShowSplash } = useSelector((state: RootState) => state.user);
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  console.log('user', user);
 
-  return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+  if (ShowSplash) {
+    return <SplashScreen />;
+  } else if (user) {
+    return <Routes />;
+  } else {
+    return <AuthRoutes />;
+  }
+};
 
 export default App;
